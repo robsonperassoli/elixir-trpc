@@ -6,13 +6,9 @@ defmodule ElixirTRPC.IntrospectionTest do
   alias ElixirTRPC.JSON
 
   defmodule GetUser do
-    use ElixirTRPC
-
-    @impl true
-    def params_schema, do: Zoi.map(%{id: Zoi.string()})
-
-    @impl true
-    def result_schema, do: Zoi.map(%{name: Zoi.string()})
+    use ElixirTRPC,
+      params: Zoi.map(%{id: Zoi.string()}),
+      result: Zoi.map(%{name: Zoi.string()})
 
     @impl true
     def execute(_params, _context) do

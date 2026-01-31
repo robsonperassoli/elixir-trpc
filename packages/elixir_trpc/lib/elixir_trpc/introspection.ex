@@ -20,10 +20,10 @@ defmodule ElixirTRPC.Introspection do
     router.__routes__()
     |> Enum.filter(fn route ->
       Code.ensure_loaded?(route.plug) &&
-        function_exported?(route.plug, :__contract__, 0)
+        function_exported?(route.plug, :__json_schema__, 0)
     end)
     |> Enum.map(fn route ->
-      contract = route.plug.__contract__()
+      json_schema = route.plug.__json_schema__()
 
       # Considering that `MyAppWeb.RPC` should be removed
       [_, _ | name_parts] = Module.split(route.plug)
@@ -32,8 +32,8 @@ defmodule ElixirTRPC.Introspection do
         name: Enum.join(name_parts, ""),
         path: route.path,
         verb: route.verb,
-        input: Zoi.to_json_schema(contract.input),
-        output: Zoi.to_json_schema(contract.output)
+        input: json_schema.input,
+        output: json_schema.output
       }
     end)
   end

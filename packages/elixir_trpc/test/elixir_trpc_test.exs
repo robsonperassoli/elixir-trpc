@@ -7,18 +7,9 @@ defmodule ElixirTRPCTest do
   doctest ElixirTRPC
 
   defmodule GetProfile do
-    use ElixirTRPC
-
-    @impl true
-    def params_schema,
-      do:
-        Zoi.map(%{
-          id: Zoi.string()
-        })
-
-    @impl true
-    def result_schema,
-      do:
+    use ElixirTRPC,
+      params: Zoi.map(%{id: Zoi.string()}),
+      result:
         Zoi.map(%{
           name: Zoi.string() |> Zoi.min(2) |> Zoi.max(100),
           age: Zoi.integer() |> Zoi.min(18) |> Zoi.max(120),
