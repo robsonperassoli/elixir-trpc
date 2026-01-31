@@ -1,0 +1,27 @@
+{
+  "name": "robocop",
+  "module": "src/index.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    }
+  },
+  "bin": {
+    "robocop": "./bin/robocop.ts"
+  },
+  "scripts": {
+    "generate": "bun run ./bin/robocop.ts",
+    "watch": "bun run ./bin/robocop.ts --watch"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "zod": "^4.3.6"
+  }
+}
