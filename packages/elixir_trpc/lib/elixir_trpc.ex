@@ -1,4 +1,8 @@
 defmodule ElixirTRPC do
+  @moduledoc """
+  TODO: document module
+  """
+
   @callback params_schema() :: Zoi.Type.t()
   @callback result_schema() :: Zoi.Type.t()
   @callback execute(map(), map()) :: {:ok, map()} | {:error, any()}

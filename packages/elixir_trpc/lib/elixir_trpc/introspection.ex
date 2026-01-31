@@ -26,9 +26,7 @@ defmodule ElixirTRPC.Introspection do
       contract = route.plug.__contract__()
 
       # Considering that `MyAppWeb.RPC` should be removed
-      [_, _ | name_parts] =
-        route.plug
-        |> Module.split()
+      [_, _ | name_parts] = Module.split(route.plug)
 
       %{
         name: Enum.join(name_parts, ""),
