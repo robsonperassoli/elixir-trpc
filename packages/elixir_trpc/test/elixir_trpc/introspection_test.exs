@@ -6,7 +6,7 @@ defmodule ElixirTRPC.IntrospectionTest do
   alias ElixirTRPC.JSON
 
   defmodule GetUser do
-    use ElixirTRPC,
+    use ElixirTRPC.Function,
       params: Zoi.map(%{id: Zoi.string()}),
       result: Zoi.map(%{name: Zoi.string()})
 
