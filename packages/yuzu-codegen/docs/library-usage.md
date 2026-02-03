@@ -1,42 +1,42 @@
-robocop/docs/library-usage.md
+yuzu-codegen/docs/library-usage.md
 ```
 
 # Library Usage Guide
 
-To use **robocop** in your application, install it as a dev dependency and run it to generate the TypeScript client. Here's how:
+To use **yuzu-codegen** in your application, install it as a dev dependency and run it to generate the TypeScript client. Here's how:
 
-## 1. Install Robocop
+## 1. Install yuzu-codegen
 
 ```bash
 # Using Bun (recommended)
-bun add -D robocop
+bun add -D yuzu-codegen
 
 # Using npm
-npm install -D robocop
+npm install -D yuzu-codegen
 
 # Using yarn
-yarn add -D robocop
+yarn add -D yuzu-codegen
 
 # Using pnpm
-pnpm add -D robocop
+pnpm add -D yuzu-codegen
 
 # Or install from local path/GitHub
-bun add -D /path/to/robocop
+bun add -D /path/to/yuzu-codegen
 ```
 
 ## 2. Create Config File
 
-Create `robocop.config.ts` in your project root:
+Create `yuzu-codegen.config.ts` in your project root:
 
 ```typescript
-import type { RobocopConfig } from "robocop";
+import type { YuzuCodegenConfig } from "yuzu-codegen";
 
 export default {
-  introspectionUrl: "http://localhost:4000/api/inspect/robocop",
+  introspectionUrl: "http://localhost:4000/api/inspect/yuzu",
   baseUrl: "http://localhost:4000",
   outputDir: "./src/generated",
   outputFile: "api.ts",
-} satisfies RobocopConfig;
+} satisfies YuzuCodegenConfig;
 ```
 
 ## 3. Add npm Scripts
@@ -46,8 +46,8 @@ Add to your `package.json`:
 ```json
 {
   "scripts": {
-    "generate": "robocop",
-    "generate:watch": "robocop --watch",
+    "generate": "yuzu-codegen",
+    "generate:watch": "yuzu-codegen --watch",
     "dev": "bun run generate && bun dev",
     "build": "bun run generate && tsc && bun build"
   }
@@ -140,7 +140,7 @@ Or use a tool like `concurrently`:
 ```json
 {
   "scripts": {
-    "dev": "concurrently \"robocop --watch\" \"bun dev\""
+    "dev": "concurrently \"yuzu-codegen --watch\" \"bun dev\""
   }
 }
 ```

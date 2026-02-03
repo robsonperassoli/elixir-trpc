@@ -1,5 +1,5 @@
 {
-  "name": "robocop",
+  "name": "yuzu-codegen",
   "module": "src/index.ts",
   "type": "module",
   "exports": {
@@ -9,11 +9,11 @@
     }
   },
   "bin": {
-    "robocop": "./bin/robocop.ts"
+    "yuzu-codegen": "./bin/yuzu-codegen.ts"
   },
   "scripts": {
-    "generate": "bun run ./bin/robocop.ts",
-    "watch": "bun run ./bin/robocop.ts --watch"
+    "generate": "bun run ./bin/yuzu-codegen.ts",
+    "watch": "bun run ./bin/yuzu-codegen.ts --watch"
   },
   "devDependencies": {
     "@types/bun": "latest"

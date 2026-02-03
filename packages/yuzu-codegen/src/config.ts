@@ -1,6 +1,6 @@
 import { join } from "node:path";
 
-export interface RobocopConfig {
+export interface YuzuCodegenConfig {
   /** URL to the introspection JSON endpoint */
   introspectionUrl: string;
   /** Base URL for API calls (defaults to introspectionUrl origin) */
@@ -15,19 +15,19 @@ export interface RobocopConfig {
   headers?: Record<string, string>;
 }
 
-export const defaultConfig: RobocopConfig = {
-  introspectionUrl: "http://localhost:4000/api/inspect/robocop",
+export const defaultConfig: YuzuCodegenConfig = {
+  introspectionUrl: "http://localhost:4000/api/inspect/yuzu",
   outputDir: "./src/gen",
-  outputFile: "robocop.ts",
+  outputFile: "yuzu-client.ts",
 };
 
-export async function loadConfig(configPath?: string): Promise<RobocopConfig> {
+export async function loadConfig(configPath?: string): Promise<YuzuCodegenConfig> {
   // Try to find config file if not provided
   if (!configPath) {
     const possiblePaths = [
-      "robocop.config.ts",
-      "robocop.config.js",
-      "robocop.config.json",
+      "yuzu-codegen.config.ts",
+      "yuzu-codegen.config.js",
+      "yuzu-codegen.config.json",
     ];
 
     for (const path of possiblePaths) {
@@ -51,7 +51,7 @@ export async function loadConfig(configPath?: string): Promise<RobocopConfig> {
     throw new Error(`Config file not found: ${configPath}`);
   }
 
-  let userConfig: Partial<RobocopConfig>;
+  let userConfig: Partial<YuzuCodegenConfig>;
 
   if (configPath.endsWith(".json")) {
     userConfig = await configFile.json();

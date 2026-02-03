@@ -29,23 +29,23 @@ const { values } = parseArgs({
 
 if (values.help) {
   console.log(`
-Usage: robocop [options]
+Usage: yuzu-codegen [options]
 
 Options:
-  -c, --config <path>   Path to config file (robocop.config.ts|js|json)
+  -c, --config <path>   Path to config file (yuzu-codegen.config.ts|js|json)
   -w, --watch          Watch mode - regenerate on changes
   -h, --help           Show this help message
 
 Examples:
-  robocop                      # Generate with default config
-  robocop -c robocop.config.ts # Use specific config file
-  robocop --watch              # Watch mode
+  yuzu-codegen                      # Generate with default config
+  yuzu-codegen -c yuzu-codegen.config.ts # Use specific config file
+  yuzu-codegen --watch              # Watch mode
 
-Config file example (robocop.config.ts):
+Config file example (yuzu-codegen.config.ts):
   export default {
-    introspectionUrl: "http://localhost:4000/api/inspect/robocop",
+    introspectionUrl: "http://localhost:4000/api/inspect/yuzu",
     outputDir: "./src/gen",
-    outputFile: "robocop.ts",
+    outputFile: "yuzu-client.ts",
     baseUrl: "http://localhost:4000",
   };
 `);

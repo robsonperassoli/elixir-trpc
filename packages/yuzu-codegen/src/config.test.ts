@@ -8,10 +8,10 @@ describe("config", () => {
   describe("defaultConfig", () => {
     test("has correct default values", () => {
       expect(defaultConfig.introspectionUrl).toBe(
-        "http://localhost:4000/api/inspect/robocop",
+        "http://localhost:4000/api/inspect/yuzu",
       );
       expect(defaultConfig.outputDir).toBe("./src/gen");
-      expect(defaultConfig.outputFile).toBe("robocop.ts");
+      expect(defaultConfig.outputFile).toBe("yuzu-client.ts");
     });
   });
 
@@ -24,8 +24,8 @@ describe("config", () => {
     });
 
     test("loads JSON config file", async () => {
-      const tmpDir = mkdtempSync(join(tmpdir(), "robocop-test-"));
-      const configPath = join(tmpDir, "robocop.config.json");
+      const tmpDir = mkdtempSync(join(tmpdir(), "yuzu-codegen-test-"));
+      const configPath = join(tmpDir, "yuzu-codegen.config.json");
 
       const customConfig = {
         introspectionUrl: "http://example.com/api/inspect",
@@ -46,8 +46,8 @@ describe("config", () => {
     });
 
     test("merges user config with defaults", async () => {
-      const tmpDir = mkdtempSync(join(tmpdir(), "robocop-test-"));
-      const configPath = join(tmpDir, "robocop.config.json");
+      const tmpDir = mkdtempSync(join(tmpdir(), "yuzu-codegen-test-"));
+      const configPath = join(tmpDir, "yuzu-codegen.config.json");
 
       const customConfig = {
         introspectionUrl: "http://custom.com/api",

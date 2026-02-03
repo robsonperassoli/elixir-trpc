@@ -1,4 +1,4 @@
-export type { RobocopConfig } from "./config.ts";
+export type { YuzuCodegenConfig } from "./config.ts";
 export { generateCode } from "./generator.ts";
 export {
   fetchIntrospection,

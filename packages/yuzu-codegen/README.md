@@ -1,6 +1,6 @@
-# Robocop
+# Yuzu Codegen
 
-A TypeScript API client generator similar to graphql-codegen. Generates fully-typed, functional-style fetch-based API clients with Zod validation from an introspection JSON endpoint.
+A TypeScript API client generator similar to graphql-codegen. Generates fully-typed, functional-style fetch-based API clients with Zod validation from an introspection JSON endpoint for the Elixir Yuzu framework.
 
 ## Features
 
@@ -22,14 +22,14 @@ bun install
 
 ### 1. Create a Config File
 
-Create a `robocop.config.ts` file in your project root:
+Create a `yuzu-codegen.config.ts` file in your project root:
 
 ```typescript
-import type { RobocopConfig } from "./src/config.ts";
+import type { YuzuCodegenConfig } from "./src/config.ts";
 
 export default {
   // URL to your API's introspection endpoint
-  introspectionUrl: "http://localhost:4000/api/inspect/robocop",
+  introspectionUrl: "http://localhost:4000/api/inspect/yuzu",
 
   // Base URL for API calls (optional, defaults to introspection URL origin)
   baseUrl: "http://localhost:4000",
@@ -38,8 +38,8 @@ export default {
   outputDir: "./src/gen",
 
   // Name of the generated file
-  outputFile: "robocop.ts",
-} satisfies RobocopConfig;
+  outputFile: "yuzu-client.ts",
+} satisfies YuzuCodegenConfig;
 ```
 
 ### 2. Generate the API Client
@@ -52,15 +52,15 @@ bun run generate
 bun run watch
 
 # Or using the CLI directly
-bun run ./bin/robocop.ts
-bun run ./bin/robocop.ts --watch
-bun run ./bin/robocop.ts --config ./my-config.ts
+bun run ./bin/yuzu-codegen.ts
+bun run ./bin/yuzu-codegen.ts --watch
+bun run ./bin/yuzu-codegen.ts --config ./my-config.ts
 ```
 
 ### 3. Use the Generated Client
 
 ```typescript
-import { configure, getProfile, updateProfile } from "./src/gen/robocop.ts";
+import { configure, getProfile, updateProfile } from "./src/gen/yuzu-client.ts";
 
 // Configure the client (optional - uses defaults from config)
 configure({
@@ -82,20 +82,20 @@ const updated = await updateProfile({ id: "user-123", name: "John Doe" });
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `introspectionUrl` | `string` | `http://localhost:4000/api/inspect/robocop` | URL to fetch the introspection JSON |
+| `introspectionUrl` | `string` | `http://localhost:4000/api/inspect/yuzu` | URL to fetch the introspection JSON |
 | `baseUrl` | `string` | Same as introspectionUrl origin | Base URL for API calls |
 | `outputDir` | `string` | `./src/gen` | Directory for the generated file |
-| `outputFile` | `string` | `robocop.ts` | Name of the generated file |
+| `outputFile` | `string` | `yuzu-client.ts` | Name of the generated file |
 | `introspectionFile` | `string` | - | Use a local JSON file instead of fetching |
 | `headers` | `Record<string, string>` | - | Additional headers for the introspection request |
 
 ## CLI Options
 
 ```bash
-robocop [options]
+yuzu-codegen [options]
 
 Options:
-  -c, --config <path>   Path to config file (robocop.config.ts|js|json)
+  -c, --config <path>   Path to config file (yuzu-codegen.config.ts|js|json)
   -w, --watch          Watch mode - regenerate on changes
   -h, --help           Show help message
 ```
@@ -134,8 +134,8 @@ Example introspection response:
       "required": ["name", "email", "age"],
       "properties": {
         "name": { "type": "string" },
-        "email": { 
-          "type": "string", 
+        "email": {
+          "type": "string",
           "format": "email",
           "pattern": "^(?!\\.)(?!.*\\.\\.)([a-z0-9_'+\\-\\.]*)[a-z0-9_+\\-]@([a-z0-9][a-z0-9\\-]*\\.)+[a-z]{2,}$"
         },
@@ -214,12 +214,12 @@ export async function getProfile(args: GetProfileArgs): Promise<GetProfileResult
 }
 
 // Configuration
-export interface RobocopConfig {
+export interface YuzuClientConfig {
   baseUrl?: string;
   headers?: Record<string, string> | (() => Record<string, string>);
 }
 
-export function configure(config: RobocopConfig): void {
+export function configure(config: YuzuClientConfig): void {
   // ...implementation
 }
 
@@ -249,7 +249,7 @@ The generator supports full JSON Schema to Zod conversion:
 bun test
 
 # Run the CLI locally
-bun run ./bin/robocop.ts
+bun run ./bin/yuzu-codegen.ts
 ```
 
 This project was created using [Bun](https://bun.com).
